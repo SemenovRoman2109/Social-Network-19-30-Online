@@ -1,0 +1,58 @@
+<html lang="en">
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block meta %}{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+        {% block links %}{% endblock %}
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    </head>
+    <body>
+        {% block modal-create-post %}{% endblock modal-create-post %} 
+        <header>
+            <nav>
+                <a href="/" class="logo">
+                    <img src="" alt="">
+                </a>
+                {% if request.resolver_match.url_name != 'auth' %}
+                    <div>
+                        <a href="{% url 'home' %}">
+                            <img src="" alt="">
+                            <span>Головна</span>
+                        </a>
+                        <a href="{% url 'post' %}">
+                            <img src="" alt="">
+                            <span>Мої публікації</span>
+                        </a>
+                        <a href="{% url 'friends' %}">
+                            <img src="" alt="">
+                            <span>Друзі</span>
+                        </a>
+                        <a href="{% url 'chat' %}">
+                            <img src="" alt="">
+                            <span>Чати</span>
+                        </a>
+                        <a href="">
+                            <img src="" alt="">
+                            <span>Налаштування</span>
+                        </a>
+                        <a href="">
+                            <img src="" alt="">
+                        </a>
+                    </div>
+                {% endif %}
+            </nav>
+            {% block header %}{% endblock %}
+        </header>
+        <main>
+            <div class="info-profile">
+                {% block info-profile %}{% endblock %}
+            </div>
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+        {% block scripts %}{% endblock %}
+    </body>
+</html>

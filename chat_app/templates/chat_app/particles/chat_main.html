@@ -1,0 +1,21 @@
+<!-- Відкриваємо центральний блок активного чату. -->
+<section class="chat-main">
+    <!-- Показуємо заголовок активного чату або стартову підказку. -->
+    <h1 id="chat-title">Почніть нове спілкування</h1>
+    <!-- Показуємо підказку до вибору конкретного чату. -->
+    <p id="chat-status">Оберіть контакт або чат зі списку</p>
+    <!-- Ховаємо вікно переписки до вибору конкретної людини. -->
+    <div id="chat-window" class="chat-window">
+        <!-- Показуємо нові повідомлення тільки в реальному часі. -->
+        <div id="messages" class="messages"></div>
+        <!-- Створюємо форму відправки повідомлення. -->
+        <form id="message-form" class="message-form">
+            <input type="file" id="message-images" accept="image/*" multiple hidden>
+            <button type="button" id="message-image-button">Зображення</button>
+            <!-- Додаємо поле для тексту повідомлення. -->
+            <input id="message-input" type="text" placeholder="Повідомлення" autocomplete="off">
+            <!-- Додаємо кнопку відправки повідомлення. -->
+            <button type="submit">Надіслати</button>
+        </form>
+    </div>
+</section>

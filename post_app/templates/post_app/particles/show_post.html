@@ -1,0 +1,58 @@
+<!-- Відображення списку постів -->
+{% for post in posts %}
+    {# Один article відповідає одній публікації зі списку posts. #}
+    <article class="post">
+        {# Дані поста беремо через крапку: post.title, post.author.email, post.created_at. #}
+        <h2>{{ post.title }}</h2>
+        <p>Автор: {{ post.author.username }}</p>
+        {# Фільтр date форматує дату у вигляді день.місяць.рік години:хвилини. #}
+        <!-- <p>Дата: {{ post.created_at|date:"d.m.Y H:i" }}</p> -->
+
+        {# Тему показуємо тільки якщо вона заповнена. #}
+        {% if post.topic %}
+            <p><strong>Тема:</strong> {{ post.topic }}</p>
+        {% endif %}
+
+        {# Основний текст публікації. #}
+        <p>{{ post.content }}</p>
+
+        {# Фото поста беруться з окремої моделі PostPhoto. #}
+        {% if post.images.all %}
+            <p><strong>Фото:</strong></p>
+            {# Перебираємо всі фото, які прив'язані до поточного поста. #}
+            {% for image in post.images.all %}
+                <p>
+                    {# Клік по стисненому фото відкриває оригінал у новій вкладці. #}
+                    <a href="{{ image.original_image.url }}" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ image.compressed_image.url }}" alt="{{ post.title }}" style="max-width: 300px; height: auto;">
+                    </a>
+                </p>
+            {% endfor %}
+        {% endif %}
+
+        {# Теги поста беруться з ManyToMany-зв'язку Post.tags. #}
+        {% if post.tags.all %}
+            <p>
+                <strong>Теги:</strong>
+                {# Виводимо назву кожного тегу з символом # перед нею. #}
+                {% for tag in post.tags.all %}
+                    #{{ tag.name }}
+                {% endfor %}
+            </p>
+        {% endif %}
+
+        {# Посилання поста беруться з окремої моделі PostLink. #}
+        {% if post.links.all %}
+            <p><strong>Посилання:</strong></p>
+            <ul>
+                {# Для кожного збереженого URL створюємо окремий пункт списку. #}
+                {% for link in post.links.all %}
+                    <li>
+                        <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.url }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </article>
+    <hr>
+{% endfor %}

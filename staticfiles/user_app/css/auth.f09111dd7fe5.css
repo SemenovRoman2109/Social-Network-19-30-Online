@@ -1,0 +1,25 @@
+.section-register, .section-login{
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    
+}
+.section-register{
+    display: flex;
+    
+}
+.section-login{
+    display: none;
+}
+.section-register nav, .section-login nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3vw;
+
+}
+.section-register nav p, .section-login nav p{
+    cursor: pointer;
+}
+

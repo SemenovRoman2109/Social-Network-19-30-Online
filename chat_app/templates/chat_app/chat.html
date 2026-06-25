@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <!-- Передаємо CSRF-токен у JavaScript. -->
+    <meta name="csrf-token" content="{{ csrf_token }}">
+{% endblock %}
+
+{% block title %}Чат{% endblock %}
+
+{% block links %}
+    <!-- Підключаємо стилі сторінки чату. -->
+    <link rel="stylesheet" href="{% static 'chat_app/css/chat.css' %}">
+    <!-- Підключаємо стилі модального вікна створення групи. -->
+    <link rel="stylesheet" href="{% static 'chat_app/css/group_chat.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- Збираємо сторінку з лівого, центрального та правого блоків. -->
+    <main class="chat-page">
+        <!-- Підключаємо лівий блок контактів. -->
+        {% include "chat_app/particles/chat_contacts.html" %}
+        <!-- Підключаємо центральне вікно активної переписки. -->
+        {% include "chat_app/particles/chat_main.html" %}
+        <!-- Підключаємо правий блок повідомлень і груп. -->
+        {% include "chat_app/particles/chat_sidebar.html" %}
+    </main>
+    <!-- Підключаємо модальне вікно, у якому користувач вибирає друзів і назву групи. -->
+    {% include "chat_app/particles/group_modal.html" %}
+{% endblock %}
+
+{% block scripts %}
+    <!-- Підключаємо WebSocket-логіку чату. -->
+    <script type="module" src="{% static 'chat_app/js/chat.js' %}"></script>
+    <!-- Підключаємо frontend-логіку створення групового чату. -->
+    <script src="{% static 'chat_app/js/group_chat.js' %}"></script>
+    <script type="module" src="{% static 'chat_app/js/loadImages.js' %}"></script>
+{% endblock %}

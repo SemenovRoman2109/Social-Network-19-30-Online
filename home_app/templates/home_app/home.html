@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block meta %}
+    <meta name="csrf-token" content="{{ csrf_token }}">
+{% endblock %}
+
+{% block title %}Home{% endblock title %}
+
+{% block links %}
+    <link rel="stylesheet" href="">
+{% endblock links %}
+
+{% block modal-create-post %}
+    {% include 'post_app/particles/create_post.html' %}
+{% endblock modal-create-post %}
+
+{% block info-profile %}
+
+{% endblock %}
+
+{% block content %}
+    {% include 'post_app/particles/content_post.html'   %}
+{% endblock content %}
+
+{% block scripts %}
+    <script type="module" src="{% static 'js/renderErrors.js' %}" ></script>
+    <script type="module" src="{% static 'post_app/js/postList.js' %} "></script>
+    <script type="module" src="{% static 'post_app/js/createPost.js' %} "></script>
+{% endblock scripts %}

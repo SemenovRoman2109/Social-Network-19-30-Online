@@ -1,0 +1,13 @@
+<div class="section-login">
+    <nav>
+        <p id="register">Реєстрація</p>
+        <p>Авторизація</p>
+    </nav>
+    <p>Раді тебе знову бачити!</p>
+    <form id="login-form" action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {{ form_login.as_p }}
+        <button type="submit">Увійти</button>
+    </form>
+    <div id="register-errors"></div>
+</div>

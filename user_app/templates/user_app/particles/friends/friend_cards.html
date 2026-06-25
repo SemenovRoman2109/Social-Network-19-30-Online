@@ -1,0 +1,36 @@
+<!-- Перебираємо людей, яких передав backend. -->
+{% for person in users %}
+    <!-- Картка людини з обводкою і шириною для 3 карток у ряд. -->
+    <article style="border: 1px solid black; width: 32%; box-sizing: border-box;" data-person-id="{{ person.id }}">
+        <!-- Показуємо username, а якщо його немає - email. -->
+        <h3>{% firstof person.username person.email %}</h3>
+        <!-- Показуємо email як простий підпис без аватарки. -->
+        <p>{{ person.email }}</p>
+
+        <!-- Для запитів показуємо підтвердження і відхилення. -->
+        {% if section == "requests" %}
+            <!-- Підтверджуємо вхідний запит. -->
+            <button type="button" data-friend-action data-url="{% url 'friend_action' person.id 'accept' %}">Підтвердити</button>
+            <!-- Видаляємо вхідний запит. -->
+            <button type="button" data-friend-action data-url="{% url 'friend_action' person.id 'delete' %}">Відхилити</button>
+        <!-- Для рекомендацій показуємо додавання і видалення з рекомендацій. -->
+        {% elif section == "recommendations" %}
+            <!-- Надсилаємо запит у друзі. -->
+            <button type="button" data-friend-action data-url="{% url 'friend_action' person.id 'add' %}">Додати</button>
+            <!-- Прибираємо картку зі списку рекомендацій. -->
+            <button type="button" data-friend-action data-url="{% url 'friend_action' person.id 'dismiss' %}">Видалити</button>
+        <!-- Для друзів показуємо повідомлення і видалення. -->
+        {% else %}
+            <!-- Кнопка для майбутнього переходу в чат. -->
+            <button type="button">Повідомлення</button>
+            <!-- Видаляємо користувача з друзів. -->
+            <button type="button" data-friend-action data-url="{% url 'friend_action' person.id 'delete' %}">Видалити</button>
+        <!-- Закриваємо умови кнопок для типу списку. -->
+        {% endif %}
+    </article>
+<!-- Якщо список порожній. -->
+{% empty %}
+    <!-- Показуємо короткий текст порожнього стану. -->
+    <p>Порожньо</p>
+<!-- Закриваємо перебір людей. -->
+{% endfor %}

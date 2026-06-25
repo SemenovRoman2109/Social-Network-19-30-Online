@@ -1,0 +1,11 @@
+<!-- Контейнер повної вкладки, який JS покаже після кліку. -->
+<section id="friends-section" style="border: 1px solid black; display: none;">
+    <!-- Кнопка повертає користувача до головної вкладки з трьома блоками. -->
+    <button type="button" id="friends-back-home">Повернутись на головну</button>
+    <!-- Заголовок активної вкладки. -->
+    <h2 id="friends-section-title"></h2>
+    <!-- Flex-сітка для всіх карток вибраної вкладки. -->
+    <div id="friends-section-list" style="display: flex; flex-wrap: wrap;"></div>
+    <!-- Sentinel для порційного підвантаження людей при скролі. -->
+    <div id="friends-load-sentinel"></div>
+</section>

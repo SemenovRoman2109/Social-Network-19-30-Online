@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Відкриваємо блок службових meta-даних. -->
+{% block meta %}
+    <!-- Передаємо CSRF-токен для fetch POST-запитів. -->
+    <meta name="csrf-token" content="{{ csrf_token }}">
+<!-- Закриваємо блок meta. -->
+{% endblock %}
+
+<!-- Назва сторінки у вкладці браузера. -->
+{% block title %}Друзі{% endblock %}
+
+<!-- Відкриваємо основний вміст сторінки. -->
+{% block content %}
+    <!-- Підключаємо перемикачі вкладок друзів. -->
+    {% include "user_app/particles/friends/friends_nav.html" %}
+    <!-- Підключаємо головну вкладку з трьома блоками. -->
+    {% include "user_app/particles/friends/friends_home.html" %}
+    <!-- Підключаємо контейнер повної вкладки. -->
+    {% include "user_app/particles/friends/friends_section.html" %}
+<!-- Закриваємо основний вміст. -->
+{% endblock %}
+
+<!-- Відкриваємо блок скриптів. -->
+{% block scripts %}
+    <!-- Підключаємо логіку переходу між секціями. -->
+    <script type="module" src="{% static 'user_app/js/friends_sections.js' %}"></script>
+    <!-- Підключаємо логіку дій з картками. -->
+    <script type="module" src="{% static 'user_app/js/friend_actions.js' %}"></script>
+<!-- Закриваємо блок скриптів. -->
+{% endblock %}
+
+

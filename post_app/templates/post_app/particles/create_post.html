@@ -1,0 +1,17 @@
+<div class="modal-create-post">
+    <div>
+        <span class="close-modal">x</span>
+        <div id="create-errors"></div>
+        <form action="{% url 'post_create' %}" id="post-create-form" method="post" enctype="multipart/form-data">
+            {{ form_create_post.as_p }}
+            <p>Посилання</p>
+            <div id="links-list">
+                <input type="url" name="links" placeholder="https://www.instagram.com/world.it.academy">
+                <span id="add-link">+</span>
+            </div>
+            <p>
+                <button>Публікація</button>
+            </p>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="section-register">
+    <nav>
+        <p>Реєстрація</p>
+        <p id="login">Авторизація</p>
+    </nav>
+    <p>Приєднуйся до World IT</p>
+    <form id="register-form" action="{% url 'register' %}" method="post">
+        {{ form_register.as_p }}
+        <button type="submit">Створити акаунт</button>
+    </form>
+    <div id="register-errors"></div>
+</div>
