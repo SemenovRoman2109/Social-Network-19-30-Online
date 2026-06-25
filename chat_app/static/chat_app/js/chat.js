@@ -172,7 +172,7 @@ function connectWebSocket(chatId) {
     // Закриваємо попередній WebSocket.
     if (chatSocket) chatSocket.close();
     // Відкриваємо WebSocket поточного чату.
-    chatSocket = new WebSocket(`ws://${window.location.host}/chat/${chatId}/`);
+    chatSocket = new WebSocket(`wss://${window.location.host}/chat/${chatId}/`);
     // Обробляємо нове повідомлення.
     chatSocket.onmessage = function(event) {
         // Читаємо JSON з WebSocket.

@@ -1,4 +1,4 @@
-const socket = new WebSocket(`ws://${window.location.host}/status/`)
+const socket = new WebSocket(`wss://${window.location.host}/status/`)
 const status = []
 
 socket.onopen(() => {
